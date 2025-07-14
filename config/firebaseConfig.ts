@@ -7,12 +7,12 @@ import { getFirestore } from 'firebase/firestore';
 
 // ✅ Your Firebase config
 const firebaseConfig = {
-  apiKey: "AIzaSyDtxxr-cM96J4nZMvuFeYdO05LXg813-48",
-  authDomain: "city-pulse-d252e.firebaseapp.com",
-  projectId: "city-pulse-d252e",
-  storageBucket: "city-pulse-d252e.appspot.com",
-  messagingSenderId: "38408091933",
-  appId: "1:38408091933:web:caf893701a454d86af89f4"
+  apiKey: '<YOUR_API_KEY_HERE>',
+  authDomain: '<YOUR_PROJECT>.firebaseapp.com',
+  projectId: '<YOUR_PROJECT_ID>',
+  storageBucket: '<YOUR_PROJECT>.appspot.com',
+  messagingSenderId: '<YOUR_SENDER_ID>',
+  appId: '<YOUR_APP_ID>'
 };
 
 // ✅ Initialize Firebase app

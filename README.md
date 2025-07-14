@@ -1,55 +1,55 @@
 # City Pulse - Events Discovery App
 
-City Pulse is a modern React Native app built with Expo that helps users discover local events, manage their profiles, and stay connected with their city's pulse. The app features authentication, event discovery, and user profile management with a beautiful, responsive UI.
+City Pulse is a modern React Native app built with Expo that helps users discover local events, manage their profiles, and stay connected with their city's pulse. The app features authentication, event discovery, biometric login, and user profile management with a beautiful, responsive UI.
 
 ## 🚀 Features
 
 ### Authentication & User Management
-- **User Registration & Login**: Secure authentication system with email/password
-- **Firebase Integration**: Persistent user data storage using AsyncStorage & store date in firebase
-- **Persistent Data**: Store user preferences and favorites locally
-- **Biometric Login**: Fingerprint/Face ID login (Native platforms only)
-- **Profile Management**: Upload profile images, edit personal information
-- **Secure Logout**: Complete session management
+- **User Registration & Login**: Secure authentication system using Firebase email/password
+- **Firebase Integration**: Real Firebase Auth and Firestore integration
+- **Persistent Auth State**: Firebase Auth state persists using AsyncStorage via `getReactNativePersistence`
+- **Secure Credential Storage**: Uses `expo-secure-store` to store email/password for biometric login
+- **Biometric Login**: Native fingerprint/Face ID login using stored credentials
+- **Profile Management**: Upload profile images, edit personal info, view account details
+- **Secure Logout**: Clears session and stored credentials safely
 
 ### Event Discovery
-- **Event Search**: Search events by keyword and location
-- **Event Details**: Comprehensive event information with images
-- **Real-time Data**: Integration with Ticketmaster API with fallback mock data
-- **Event Categories**: Music, conferences, arts, and more
+- **Event Search**: Search by keyword and city using Ticketmaster API
+- **Event Details**: View images, date, time, location, and more
+- **Favorites**: Mark and store favorite events locally
+- **Fallback Data**: Mock data fallback when API fails
 
 ### UI/UX Excellence  
-- **Bottom Navigation**: Fixed navigation with Home and Profile tabs
-- **Theme Support**: Dark/Light mode toggle with system preference
-- **RTL Language Support**: Full Arabic language support with RTL layout
-- **Responsive Design**: Mobile-first design with web compatibility
-- **Modern Icons**: Beautiful Ionicons throughout the app
-- **Toast Notifications**: User-friendly feedback with Sonner Native
+- **Bottom Navigation**: Clean navigation with Home and Profile tabs
+- **Theme Support**: Light and dark mode with system auto-detection
+- **RTL Language Support**: Toggle for Arabic (layout only, placeholder translation)
+- **Responsive Design**: Works across web and native platforms
+- **Modern Icons**: Ionicons throughout the interface
+- **Toast Notifications**: Friendly feedback using Sonner Native
 
 ### Technical Features
-- **TypeScript**: Full type safety and better developer experience
-- **Expo Compatible**: Runs on web, iOS, and Android
-- **Platform-Specific Code**: Optimized for different platforms
-- **Error Handling**: Comprehensive error management
-- **Loading States**: Smooth loading experiences
+- **TypeScript**: Safer, smarter development
+- **Expo Framework**: Cross-platform app support
+- **Modular Hooks and Components**: Reusable architecture
+- **Firebase Auth + Firestore**: Real-time data and authentication
+- **Secure Store**: Credential storage for biometric login
 
 ## 🛠 Tech Stack
 
-- **React Native** - Cross-platform mobile development
-- **Expo** - Development platform and tools
-- **TypeScript** - Type safety and better development experience
-- **React Navigation** - Navigation solution (Stack + Bottom Tabs)
-- **Mock Firebase** - User authentication and data storage
-- **AsyncStorage** - Local data persistence
-- **Expo Vector Icons** - Beautiful icons
-- **Sonner Native** - Toast notifications
-- **React Native Safe Area Context** - Safe area handling
-- **Ticketmaster API** - Event data (with mock fallback)
-- **Image Generation API** - Dynamic profile images
+- **React Native + Expo**
+- **Firebase (Auth + Firestore)**
+- **TypeScript**
+- **AsyncStorage + SecureStore**
+- **React Navigation**
+- **Expo Vector Icons**
+- **Ticketmaster Discovery API**
+- **Sonner Native**
+- **LocalAuthentication API**
 
 ## 📱 App Structure
 
 ### Navigation Flow
+
 ```
 App
 ├── Auth Stack (Pre-login)
@@ -63,109 +63,76 @@ App
 ```
 
 ### Core Screens
-- **SplashScreen**: App initialization and loading
-- **LoginScreen**: Authentication with email/password and biometric options
-- **HomeScreen**: Event discovery and search functionality
-- **ProfileScreen**: User profile management and app settings
-- **EventDetailScreen**: Detailed event information
+
+- **SplashScreen**
+- **LoginScreen** (with biometric support)
+- **HomeScreen**
+- **ProfileScreen**
+- **EventDetailScreen**
 
 ## 🔧 Setup Instructions
 
 ### Prerequisites
-- Node.js (v16 or higher)
-- npm or Yarn
+
+- Node.js (v16+)
 - Expo CLI (`npm install -g expo-cli`)
+- Firebase project (if you want to use real backend)
 
 ### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone <your-repo-url>
-   cd city-pulse-app
-   ```
+```bash
+git clone <your-repo-url>
+cd city-pulse-app
+npm install
+# or
+yarn install
+```
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+### Firebase Setup
 
-3. **Start the development server**
-   ```bash
-   expo start
-   ```
+Replace placeholder values in `firebaseConfig.ts`:
 
-4. **Run on device/simulator**
-   - **Physical Device**: Scan QR code with Expo Go app
-   - **iOS Simulator**: Press `i` in terminal
-   - **Android Emulator**: Press `a` in terminal  
-   - **Web Browser**: Press `w` in terminal
+```ts
+const firebaseConfig = {
+  apiKey: 'YOUR_API_KEY',
+  authDomain: '...',
+  projectId: '...',
+  ...
+};
 
-### Environment Compatibility
+const auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(AsyncStorage),
+});
+```
 
-This app is designed to work in the **a0.dev environment** (Expo Snack-like environment) and uses:
-- **Mock Firebase**: Instead of real Firebase SDK (due to environment constraints)
-- **AsyncStorage**: For persistent data storage
-- **Platform-specific code**: To handle web vs. native differences
-- **Dynamic imports**: For optional native features like biometrics
+> 🧠 Make sure `@react-native-async-storage/async-storage` is installed.
 
-## 🎨 Key Features Walkthrough
+### Start the App
 
-### 1. Authentication System
-- **Registration**: Create new account with email/password (min 6 characters)
-- **Login**: Secure login with proper error handling
-- **Biometric Login**: Set up fingerprint/Face ID (native only)
-- **Profile Creation**: Automatic user profile creation in database
+```bash
+expo start
+```
 
-### 2. Event Discovery
-- **Search Events**: Find events by keyword or city
-- **Event Cards**: Beautiful cards with event images and details
-- **Event Details**: Full event information with date, venue, and description
-- **Fallback Data**: Mock events when API is unavailable
+## 🔐 Biometric Login (Secure Setup)
 
-### 3. Profile Management
-- **Profile Picture**: Generate new profile images dynamically
-- **Edit Information**: Update display name and personal info
-- **Settings**: Theme toggle, language selection, biometric setup
-- **Account Info**: View registration date and account details
+1. After successful login/registration, email and password are securely stored using:
 
-### 4. Settings & Preferences
-- **Dark/Light Theme**: System-aware theme switching
-- **Language Toggle**: English ↔ Arabic with RTL support
-- **Biometric Settings**: Enable/disable biometric login
-- **Secure Logout**: Clear all stored data on logout
+```ts
+await SecureStore.setItemAsync('userEmail', email);
+await SecureStore.setItemAsync('userPassword', password);
+```
 
-## 🔒 Security & Data Management
+2. On biometric login, credentials are retrieved and user is logged in via:
 
-### Data Storage
-- **User Profiles**: Stored in mock Firestore using AsyncStorage
-- **Authentication**: Mock Firebase Authentication with proper error codes
-- **Biometric Data**: Securely stored encrypted credentials
-- **Session Management**: Automatic session restoration and cleanup
+```ts
+const email = await SecureStore.getItemAsync('userEmail');
+const password = await SecureStore.getItemAsync('userPassword');
+await signInWithEmailAndPassword(auth, email, password);
+```
 
-### Security Features
-- **Password Validation**: Minimum 6 character requirement
-- **Email Validation**: Proper email format checking
-- **Error Handling**: Secure error messages without sensitive data exposure
-- **Session Expiry**: Automatic logout on app restart (configurable)
+> ✅ Credentials are encrypted and only available after successful biometric authentication.
 
-## 🌍 Internationalization
-
-### Language Support
-- **English**: Default language
-- **Arabic**: Full RTL support
-- **Dynamic Switching**: Live language changes without restart
-- **RTL Layout**: Proper right-to-left text and UI alignment
-
-### RTL Features
-- Text input alignment
-- Icon positioning
-- Navigation flow
-- Button layouts
-- Form arrangements
-
-## 📦 Project Structure
+## 📂 Project Structure
 
 ```
 src/
@@ -189,28 +156,17 @@ src/
 └── App.tsx            # Main app component
 ```
 
-## 🔧 Development Notes
+## 🌐 Internationalization & RTL
 
-### Platform Differences
-- **Image Component**: Conditional rendering for web vs. native
-- **Biometric Authentication**: Native-only feature with web fallbacks
-- **Navigation**: Different behaviors on web vs. mobile
-- **AsyncStorage**: Universal storage solution
-
-### Mock Implementation
-Due to the a0.dev environment constraints, this app uses:
-- Mock Firebase Authentication API
-- AsyncStorage for data persistence  
-- Mock Firestore database functions
-- Fallback event data when API fails
+- Toggle between English and Arabic (UI layout only)
+- RTL layout support for all major UI components
+- Bi-directional form, icon, and text adjustments
 
 ### Performance Optimizations
 - **React.memo**: Optimized component re-renders
 - **useCallback**: Memoized event handlers
 - **Platform checks**: Conditional code loading
 - **Image optimization**: Platform-specific image handling
-
-## 🐛 Troubleshooting
 
 ### Common Issues
 
@@ -230,10 +186,10 @@ Due to the a0.dev environment constraints, this app uses:
    - Ensure AsyncStorage permissions
    - Check for storage quota limits
 
-### Environment Specific
+   ### Environment Specific
 
-**For a0.dev Environment:**
-- Firebase SDK not available (using mock implementation)
+**For Prod Environment:**
+- Firebase SDK available 
 - Some native features may not work on web preview
 - Image uploads use API generation instead of file upload
 
@@ -242,42 +198,40 @@ Due to the a0.dev environment constraints, this app uses:
 - Real Firebase can be integrated by updating config
 - Native biometric features available on device
 
+## 📦 Key Improvements in This Version
+
+- ✅ Firebase `initializeAuth()` with AsyncStorage for persistent login
+- ✅ Biometric login with stored encrypted credentials
+- ✅ `expo-secure-store` used for secure credential management
+- ✅ Clean error handling for biometric and auth flows
+- ✅ Real Firebase Firestore integration for profile data
+
 ## 🚀 Future Enhancements
 
-### Planned Features
-- [ ] Real Firebase integration for production
-- [ ] Push notifications for event reminders  
-- [ ] Social features (sharing, comments)
-- [ ] Event favorites and bookmarks
-- [ ] Calendar integration
-- [ ] Location-based event recommendations
-- [ ] Offline mode with data caching
-
-### Technical Improvements
-- [ ] Unit tests with Jest
-- [ ] E2E testing with Detox
-- [ ] Performance monitoring
-- [ ] Advanced error tracking
-- [ ] CI/CD pipeline setup
+- [ ] Cloud functions for custom logic
+- [ ] Push notifications
+- [ ] Event calendar syncing
+- [ ] Password reset flow
+- [ ] More biometric options (e.g., Android face unlock)
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT License
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Fork
+2. `git checkout -b feature/YourFeature`
+3. Commit
+4. Push
+5. Pull Request
 
 ## 📞 Support
 
-For support, email support@citypulse.dev or create an issue in the GitHub repository.
+Contact: support@citypulse.dev  
+Raise an issue on GitHub
 
 ---
 
-**Made with ❤️ by the City Pulse Team**
-
-*Discover your city's pulse, one event at a time.*
+**Built with ❤️ by the City Pulse Team**  
+*Discover your city's vibe, one event at a time.*
