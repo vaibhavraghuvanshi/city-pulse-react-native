@@ -1,0 +1,59 @@
+{
+  "name": "citypulse",
+  "version": "1.0.0",
+  "description": "Event Search and booking app",
+  "homepage": "https://github.com/vaibhavraghuvanshi/cityPulse#readme",
+  "bugs": {
+    "url": "https://github.com/vaibhavraghuvanshi/cityPulse/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vaibhavraghuvanshi/cityPulse.git"
+  },
+  "license": "MIT",
+  "author": "Vaibhav Singh",
+  "type": "commonjs",
+  "main": "index.ts",
+  "scripts": {
+    "start": "npx expo start",
+    "android": "npx expo run:android",
+    "ios": "npx expo run:ios",
+    "web": "npx expo start --web"
+  },
+  "dependencies": {
+    "@auth0/auth0-react": "2.3.0",
+    "@clerk/clerk-react": "5.33.0",
+    "@expo/vector-icons": "~14.1.0",
+    "@react-native-async-storage/async-storage": "2.1.2",
+    "@react-native-community/slider": "4.5.6",
+    "@react-navigation/bottom-tabs": "7.4.2",
+    "@react-navigation/native": "7.1.14",
+    "@react-navigation/native-stack": "7.3.21",
+    "@supabase/supabase-js": "2.51.0",
+    "convex": "1.25.2",
+    "date-fns": "4.1.0",
+    "expo": "^53.0.19",
+    "expo-camera": "~16.1.10",
+    "expo-linear-gradient": "~14.1.5",
+    "expo-local-authentication": "~16.0.5",
+    "firebase": "^11.10.0",
+    "lucide-react-native": "0.525.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-native": "0.79.5",
+    "react-native-gesture-handler": "~2.24.0",
+    "react-native-maps": "1.20.1",
+    "react-native-reanimated": "~3.17.4",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-screens": "~4.11.1",
+    "react-native-svg": "15.11.2",
+    "react-native-web": "~0.20.0",
+    "sonner-native": "0.21.0",
+    "expo-secure-store": "~14.2.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@types/react": "~19.0.10",
+    "typescript": "^5.8.3"
+  }
+}
