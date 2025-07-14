@@ -6,7 +6,8 @@ City Pulse is a modern React Native app built with Expo that helps users discove
 
 ### Authentication & User Management
 - **User Registration & Login**: Secure authentication system with email/password
-- **Mock Firebase Integration**: Persistent user data storage using AsyncStorage (compatible with a0.dev environment)
+- **Firebase Integration**: Persistent user data storage using AsyncStorage & store date in firebase
+- **Persistent Data**: Store user preferences and favorites locally
 - **Biometric Login**: Fingerprint/Face ID login (Native platforms only)
 - **Profile Management**: Upload profile images, edit personal information
 - **Secure Logout**: Complete session management
